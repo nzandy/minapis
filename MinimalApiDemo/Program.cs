@@ -9,11 +9,33 @@ builder.Services.AddDbContext<BookContext>(options =>
 
 
 var app = builder.Build();
-using (var scope = app.Services.CreateScope())
+if (builder.Environment.IsDevelopment())
 {
-    var services = scope.ServiceProvider;
-    var dbContext = services.GetService<BookContext>();
-    dbContext.Database.EnsureCreated();
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        var dbContext = services.GetService<BookContext>();
+        dbContext.Database.EnsureCreated();
+
+        if (!dbContext.Books.Any())
+        {
+
+            dbContext.Books.AddRange(new List<Book>
+            {
+                new Book
+                {
+                    Id = 1,
+                    Title = "Lion witch and wardrobe"
+                },
+                new Book
+                {
+                    Id = 2,
+                    Title = "Harry potter"
+                }
+            });
+            dbContext.SaveChanges();
+        }
+    }
 }
 
 
