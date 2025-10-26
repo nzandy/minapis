@@ -51,3 +51,7 @@ void SetupLocalDb()
         }
     }
 }
+
+public partial class Program
+{
+}

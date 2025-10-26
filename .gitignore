@@ -53,6 +53,9 @@ _ReSharper*/
 .idea/
 *.sln.iml
 
+# SqlLite db
+*.db
+
 # NuGet Packages
 *.nupkg
 *.snupkg
