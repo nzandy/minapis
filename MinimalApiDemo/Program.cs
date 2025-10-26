@@ -30,25 +30,6 @@ void SetupLocalDb()
         var services = scope.ServiceProvider;
         var dbContext = services.GetService<BookContext>();
         dbContext.Database.EnsureCreated();
-
-        if (!dbContext.Books.Any())
-        {
-
-            dbContext.Books.AddRange(new List<Book>
-            {
-                new Book
-                {
-                    Id = 1,
-                    Title = "Lion witch and wardrobe"
-                },
-                new Book
-                {
-                    Id = 2,
-                    Title = "Harry potter"
-                }
-            });
-            dbContext.SaveChanges();
-        }
     }
 }
 
